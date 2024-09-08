@@ -56,7 +56,7 @@
         </p>
         <ol>
             <li>
-                <strong>Data Preprocessing:</strong> The images are imported and cropped along their height into three parts, each corresponding to one of the BGR color channels. To improve alignment accuracy, border detection and cropping are performed. Borders are identified and cropped if their color values are too white (<0.02) or too dark (>0.98), while ensuring that all three images have the same dimensions after cropping.
+                <strong>Data Preprocessing:</strong> The images are imported and cropped along their height into three parts, each corresponding to one of the BGR color channels. To improve alignment accuracy, border detection and cropping are performed. Borders are identified and cropped if their color values are too white (>0.98) or too dark (<0.02), while ensuring that all three images have the same dimensions after cropping.
             </li>
             <li>
                 <strong>Image Alignment:</strong> The R and G images are aligned with the B image. The distance between images is measured using the NCC (Normalized Cross-Correlation) function.
