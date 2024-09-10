@@ -73,7 +73,7 @@
             The results show that the images are well-aligned with minimal ghosting and proper border cropping, achieving the task objectives. Although the .tif images are much larger than the .jpg images, the pyramid algorithm significantly reduced the runtime and expanded the search range.
         </p>
         <p>
-            A drawback is that ghosting is not completely eliminated; some ghosting is still visible under magnification, indicating that the best match has not been obtained. This may be due to the NCC distance calculation method, as using `np.roll` for NCC calculation affects the result by including surrounding pixels. Additionally, NCC itself may have limitations, as it might struggle with images containing objects with contrasting colors against backgrounds. Consideration of alternative image distance matching algorithms may be needed.
+            A drawback is that ghosting is not completely eliminated; some ghosting is still visible under magnification (eg. emir, melons), indicating that the best match has not been obtained. This may be due to the NCC distance calculation method, as using `np.roll` for NCC calculation affects the result by including surrounding pixels. Additionally, NCC itself may have limitations, as it might struggle with images containing objects with contrasting colors against backgrounds. Consideration of alternative image distance matching algorithms may be needed.
         </p>
     </div>
 
