@@ -96,7 +96,7 @@
 
     <div class="content">
         <h3>5. Part 2.3: Gaussian and Laplacian Pyramid</h3>
-        <p>By continuously blurring the image, a Gaussian pyramid is constructed, and by subtracting adjacent layers, a Laplacian pyramid is obtained. The result is shown below:</p>
+        <p>For part 2.3, the image is convolved with a Gaussian kernel to obtain a blurred image. This step is repeated to continuously generate images with increasing levels of blur, ultimately forming a Gaussian pyramid. The adjacent layers of the Gaussian pyramid are then subtracted to obtain the Laplacian pyramid of the image. The results are shown below:</p>
         <div class="image-container">
             <img src="result_img/pyramids.jpg" alt="Laplacian Pyramid">
         </div>
@@ -112,7 +112,8 @@
         <div class="image-container">
             <img src="result_img/blend_wu.png" alt="Face Blending">
         </div>
-        <p>Here is an example using a different mask shape (elliptical), with the result shown below:</p>
+        <p>Face recognition is performed on the two input facial images using OpenCV's Haar feature function. Based on the detected faces, the two images are cropped to the same size, ensuring that the dividing line between the left and right sides of the face aligns with the center line of the image, facilitating subsequent face blending.</p>
+        <p>Below is an example using a mask of different shapes, where my hand and mouth are fused together. An elliptical mask was chosen for this purpose, and the result is shown below:</p>
         <div class="image-container">
             <img src="result_img/blend_face_mouth.png" alt="hand-mouth blending">
         </div>
