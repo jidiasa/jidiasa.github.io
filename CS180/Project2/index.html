@@ -61,7 +61,7 @@
 
     <div class="content">
         <h3>3. Part 2.1: Image Sharpening</h3>
-        <p>The image is sharpened by extracting its high-frequency information and adding it back with a sharpening factor. The result is shown below:</p>
+        <p>After importing the image, the image is convolved with a Gaussian kernel to obtain the low-frequency information. Then, the low-frequency information is subtracted from the original image to obtain the high-frequency information. Finally, the high-frequency information, multiplied by a sharpening factor, is added back to the original image to produce the sharpened image. The result is shown below:</p>
         <div class="image-container">
             <img src="result_img/sharpened.png" alt="Sharpened Image">
         </div>
@@ -82,12 +82,12 @@
         <div class="image-container">
             <img src="result_img/hybrid_fail.png" alt="Image Hybriding">
         </div>
-        <p>Two more successful examples: the fusion of a car and a leopard, and the fusion of Taylor and Ed:</p>
+        <p>It can be observed that for the first image, the picture is tilted, and the face does not stand out against the background; only the teeth and eyes are visible, resulting in an unsatisfactory fusion of the face and the cat's face. Here, I adjusted the high-frequency information of the image by increasing the color contrast of the high-frequency information, making it more prominent in the image. Below are two more successful cases: the fusion of a car and a leopard, and the fusion of Taylor and Ed.</p>
         <div class="image-container">
             <img src="result_img/car-animal.png" alt="Car and Leopard Fusion">
             <img src="result_img/Taylor-ed.png" alt="Taylor and Ed Fusion">
         </div>
-        <p>The Fourier spectrum for the images is shown below:</p>
+        <p>The fusion result of the car and the leopard is my favorite outcome. The original images, the images obtained after extracting the low-frequency or high-frequency information, and the fused image were all subjected to Fourier transformation to obtain the spectrum diagrams. The results are shown below:</p>
         <div class="image-container">
             <img src="result_img/hybrid_fre.png" alt="Fourier Spectrum">
             <img src="result_img/hybrid.png" alt="Fourier Spectrum">
