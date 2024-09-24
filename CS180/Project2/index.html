@@ -1,1 +1,121 @@
-<hello></hello>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS180 Project 2 by Tianhe Wang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .content {
+            margin-bottom: 40px;
+        }
+        .content p {
+            margin: 15px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CS180 Project 2</h1>
+    <h2>Author: Tianhe Wang</h2>
+
+    <div class="content">
+        <h3>1. Part 1.1: Gradient Magnitude Image</h3>
+        <p>By convolving the image with D_x and D_y, then summing the vector values of both results, we obtain the gradient magnitude image. A threshold value of 0.2 was selected, assigning 1 to values greater than 0.2, and 0 to others, resulting in a binarized edge image. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/result_1_1.png" alt="Gradient Magnitude Image">
+        </div>
+    </div>
+
+    <div class="content">
+        <h3>2. Part 1.2: Gaussian Blur and Edge Detection</h3>
+        <p>The image is first Gaussian blurred, with the kernel size set to 5 and sigma value set to 1. Edge detection is performed on the blurred image, and it better reflects the original image's edges, including fewer noise points and more defined boundaries. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/result_1_2.png" alt="Edge Detection after Gaussian Blur">
+        </div>
+        <p>Alternatively, a Gaussian kernel is first blurred and convolved with the image, yielding the same result, shown below:</p>
+        <div class="image-container">
+            <img src="result_img/edge_output.png" alt="Edge Detection with Gaussian Kernel">
+        </div>
+    </div>
+
+    <div class="content">
+        <h3>3. Part 2.1: Image Sharpening</h3>
+        <p>The image is sharpened by extracting its high-frequency information and adding it back with a sharpening factor. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/sharpened.png" alt="Sharpened Image">
+        </div>
+        <p>After sharpening, the image is blurred and then sharpened again. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/sharpened_blurred_sharpened.png" alt="Blurred and Resharpened Image">
+        </div>
+        <p>Other sharpened images are shown below:</p>
+        <div class="image-container">
+            <img src="result_img/path_to_image6.png" alt="Other Sharpened Images">
+        </div>
+    </div>
+
+    <div class="content">
+        <h3>4. Part 2.2: Image Hybriding</h3>
+        <p>The high-frequency and low-frequency information of two images are hybrided together. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/hybrid_fail.png" alt="Image Hybriding">
+        </div>
+        <p>Two more successful examples: the fusion of a car and a leopard, and the fusion of Taylor and Ed:</p>
+        <div class="image-container">
+            <img src="result_img/car-animal.png" alt="Car and Leopard Fusion">
+            <img src="result_img/Taylor-ed.png" alt="Taylor and Ed Fusion">
+        </div>
+        <p>The Fourier spectrum for the images is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/hybrid_fre.png" alt="Fourier Spectrum">
+            <img src="result_img/hybrid.png" alt="Fourier Spectrum">
+        </div>
+    </div>
+
+    <div class="content">
+        <h3>5. Part 2.3: Gaussian and Laplacian Pyramid</h3>
+        <p>By continuously blurring the image, a Gaussian pyramid is constructed, and by subtracting adjacent layers, a Laplacian pyramid is obtained. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/pyramid.png" alt="Laplacian Pyramid">
+        </div>
+    </div>
+
+    <div class="content">
+        <h3>6. Part 2.4: Multiresolution Blending</h3>
+        <p>Using the Laplacian pyramid, the images are blended layer by layer. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/apple_orange.png" alt="Multiresolution Blending">
+        </div>
+        <p>Using the same mask, the blending of two faces can be achieved. The result is shown below:</p>
+        <div class="image-container">
+            <img src="result_img/blend_wu.png" alt="Face Blending">
+        </div>
+        <p>Here is an example using a different mask shape (elliptical), with the result shown below:</p>
+        <div class="image-container">
+            <img src="result_img/blend_face_mouth.png" alt="hand-mouth blending">
+        </div>
+    </div>
+
+</body>
+</html>
