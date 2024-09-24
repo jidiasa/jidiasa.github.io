@@ -49,7 +49,7 @@
 
     <div class="content">
         <h3>2. Part 1.2: Gaussian Blur and Edge Detection</h3>
-        <p>The image is first Gaussian blurred, with the kernel size set to 5 and sigma value set to 1. Edge detection is performed on the blurred image, and it better reflects the original image's edges, including fewer noise points and more defined boundaries. The result is shown below:</p>
+        <p>In this part, the image is first Gaussian blurred, with a kernel size of 5 and a sigma value of 1, resulting in a slight blur. Then, the blurred image is used for the edge detection operation in part 1.1, yielding an edge image. It can be seen that the blurred image reflects the edges of the original image more clearly, with fewer noise points and wider, more defined edges. This improvement is likely because the points that were previously misidentified as edges have been smoothed out by the Gaussian kernel, effectively removing the noise. The result is shown below:</p>
         <div class="image-container">
             <img src="result_img/result_1_2.png" alt="Edge Detection after Gaussian Blur">
         </div>
