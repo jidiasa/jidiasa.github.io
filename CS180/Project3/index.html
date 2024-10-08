@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Morphing Faces Experiment</title>
+</head>
+<body>
+<h1>Morphing Faces Experiment</h1>
+
+<h2>Part 1: Defining Correspondence Points</h2>
+<p>To morph two images, correspondence points must be defined on each image in the same order. I used the cpselect tool in MATLAB to select points on a portrait of myself and a portrait of the famous Chinese movie star, Daniel Wu. Each image has 48 selected points.</p>
+<img src="path_to_your_image1.jpg" alt="Portrait 1">
+<img src="path_to_your_image2.jpg" alt="Portrait 2">
+<p>Using these points, I computed the triangulation for the midway face between the two images.</p>
+<img src="path_to_triangulation_image.jpg" alt="Triangulation Result">
+
+<h2>Part 2: Computing the Mid-Way Face</h2>
+<p>To create a mid-way face between two different faces:</p>
+<ol>
+    <li>Compute the average shape, which is the mean of each set of corresponding points.</li>
+    <li>Warp both faces into this average shape.</li>
+    <li>Average the colors of the warped faces (cross-dissolve).</li>
+</ol>
+<p>For warping, I iterated through all triangles in the original images. For each triangle, I computed its bounding rectangle using <code>cv2.boundingRect</code>, created a mask to isolate the triangle, and warped this to the target location. The triangle's effective part was then extracted using the mask and added to the target image.</p>
+<img src="path_to_midway_face.jpg" alt="Mid-Way Face">
+
+<h2>Part 3: Creating a Morph Sequence</h2>
+<p>To create a morph sequence from one face to another, the process from Part 2 was repeated with varying fractions of warping and cross-dissolving. The parameter controlling the amount of warping and cross-dissolving varied from 0 to 1, with a step size of 1/30.</p>
+<img src="path_to_morph_sequence.gif" alt="Morph Sequence GIF">
+
+<h2>Part 4: Utilizing the FEI Face Database</h2>
+<p>The photographs used are from the <a href="https://fei.edu.br/~cet/facedatabase.html">FEI face database</a>, which contains images of 200 individuals from the Artificial Intelligence Laboratory of FEI in São Bernardo do Campo, São Paulo, Brazil. The database is divided into neutral faces and expression subsets.</p>
+<img src="path_to_neutral_faces.jpg" alt="Neutral Faces">
+<img src="path_to_expression_faces.jpg" alt="Expression Faces">
+<p>These images are annotated with 46 correspondences. Below are example triangulations from the dataset:</p>
+<img src="path_to_triangulation1.jpg" alt="Triangulation 1">
+<img src="path_to_triangulation2.jpg" alt="Triangulation 2">
+<p>To compute the mean face of a population:</p>
+<ol>
+    <li>Find the average shape by averaging all correspondences.</li>
+    <li>Warp each face into this average shape.</li>
+    <li>Compute the average color from all warped faces to derive the mean face.</li>
+</ol>
+<p>Below are examples of faces from the dataset, warped into the average shape for both neutral and expression subsets:</p>
+<img src="path_to_warped_face1.jpg" alt="Warped Face 1">
+<img src="path_to_warped_face2.jpg" alt="Warped Face 2">
+<img src="path_to_warped_face3.jpg" alt="Warped Face 3">
+<img src="path_to_warped_face4.jpg" alt="Warped Face 4">
+<img src="path_to_warped_face5.jpg" alt="Warped Face 5">
+<img src="path_to_warped_face6.jpg" alt="Warped Face 6">
+<p>Here are the average neutral and expression faces:</p>
+<img src="path_to_average_neutral.jpg" alt="Average Neutral Face">
+<img src="path_to_average_expression.jpg" alt="Average Expression Face">
+<p>Here is how my face looks when warped into the average geometry (a little bit ugly).</p>
+
+<h2>Part 5: PCA Analysis</h2>
+<p>Using the dataset and the computed average face, I conducted a PCA analysis to obtain the principal components for neutral and smiling faces, displaying the first eight components:</p>
+<img src="path_to_pca_component1.jpg" alt="PCA Component 1">
+<img src="path_to_pca_component2.jpg" alt="PCA Component 2">
+<p>To reconstruct my average face, I projected it onto the principal component space. As more principal components are used, the reconstructed face increasingly resembles the original image:</p>
+<img src="path_to_reconstructed_face.jpg" alt="Reconstructed Face">
+
+</body>
+</html>
 
