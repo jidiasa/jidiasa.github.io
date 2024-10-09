@@ -55,8 +55,10 @@
     <li>Warp both faces into this average shape.</li>
     <li>Average the colors of the warped faces (cross-dissolve).</li>
 </ol>
+<p>For the first step, the average shape is just the average of each correspondence—the mean correspondences that we used for a Delaunay triangulation.</p>
 <p>For warping, I iterated through all triangles in the original images. For each triangle, I computed its bounding rectangle using <code>cv2.boundingRect</code>, created a mask to isolate the triangle, and warped this to the target location. The triangle's effective part was then extracted using the mask and added to the target image.</p>
-<img src="images/mid_face_Jacky_Wu.jpg" alt="Mid-Way Face">
+<p>After morphing the shapes, the colors of the two images are averaged to create the mid-way image.</p>
+    <img src="images/mid_face_Jacky_Wu.jpg" alt="Mid-Way Face">
 
 <h2>Part 3: Creating a Morph Sequence</h2>
 <p>To create a morph sequence from one face to another, the process from Part 2 was repeated with varying fractions of warping and cross-dissolving. The parameter controlling the amount of warping and cross-dissolving varied from 0 to 1, with a step size of 1/30.</p>
