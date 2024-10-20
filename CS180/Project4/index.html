@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project4a</title>
+</head>
+<body>
+    <h1>Project4a</h1>
+    
+    <h2>1. Photo Shooting</h2>
+    <p>
+        For photo shooting, I took four photos of the surrounding scenery from the balcony of our apartment, meeting the shooting requirements: the perspective is fixed at the lens, and the camera is rotated to ensure that the overlapping part of each photo is between 40% and 70%.
+    </p>
+    <!-- Insert images -->
+    <img src="photo1.jpg" alt="Photo 1" width="300">
+    <img src="photo2.jpg" alt="Photo 2" width="300">
+    <img src="photo3.jpg" alt="Photo 3" width="300">
+    <img src="photo4.jpg" alt="Photo 4" width="300">
+
+    <h2>2. Calculating the Transformation Matrix</h2>
+    <p>
+        For calculating the transformation matrix, I first used MATLAB to select the corresponding points and then substituted them into the system of equations to obtain the transformation matrix. The calculated transformation matrix is as follows:
+    </p>
+    <!-- Insert matrix formula -->
+    <pre>
+    [ a11  a12  a13 ]
+    [ a21  a22  a23 ]
+    [ a31  a32  a33 ]
+    </pre>
+
+    <h2>3. Wrap the Image</h2>
+    <p>
+        Using the calculated transformation matrix, one of the images is wrapped. First, calculate the transformed positions of the four corners of the original image to get the maximum range of the transformed image, which is set as the boundary. Points within the boundary are inverse-mapped to the original image, and interpolation is performed based on the values of the original image to obtain the wrapped image.
+    </p>
+
+    <h2>4. Combine the Images</h2>
+    <p>
+        Combine the wrapped image with another image. Set the parameters offset and overlap_ratio, and manually align them. Use a Laplacian pyramid to blend the two images together to get the mosaic image.
+    </p>
+    <!-- Insert final mosaic image -->
+    <img src="mosaic_image.jpg" alt="Mosaic Image" width="600">
+    
+</body>
+</html>
 
