@@ -17,6 +17,16 @@
         h2 {
             color: #2F4F4F;
         }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .image-row img {
+            margin: 10px;
+            width: 45%;
+        }
     </style>
 </head>
 <body>
@@ -65,8 +75,11 @@
         <p>Figure 8: inliners of RANSAC</p>
     </div>
      <div class="image-container">
-        <img src="final_blend_image.jpg" alt="final blend image" width="800">
-        <p>Figure 9: The final stitched panoramic image.</p>
+    <div class="image-row">
+        <img src="blended_mosaic_12" alt="Final Blended Image (Manually aligned, Done by Project 4a)">
+        <img src="final_blend_image.jpg" alt="Final Blended Image (Auto-aligned)">
+    </div>
+        <p>Figure 9: The original image and the final stitched panoramic image displayed side by side.</p>
     </div>
 
     <h2>Additional Results</h2>
