@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automatic Panorama Stitching</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        h2 {
+            color: #2F4F4F;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Automatic Panorama Stitching Using Multi-Scale Oriented Patches</h1>
+
+    <p>In this project, I have automatically merged two photos into a panoramic image based on the paper <strong>"Multi-Image Matching using Multi-Scale Oriented Patches" by Brown et al.</strong></p>
+
+    <h2>1. Corner Detection with Harris Function</h2>
+    <p>First, I applied the Harris function to extract corner points from both images. The results are as follows:</p>
+    <div class="image-container">
+        <img src="maximal_suppression_coord_result0.jpg" alt="Corner Detection Result Image 1" width="800">
+        <p>Figure 1: Corner detection on Image 1.</p>
+    </div>
+    <div class="image-container">
+        <img src="maximal_suppression_coord_result1.jpg" alt="Corner Detection Result Image 2" width="800">
+        <p>Figure 2: Corner detection on Image 2.</p>
+    </div>
+
+    <h2>2. Adaptive Non-Maximal Suppression (ANMS)</h2>
+    <p>To prevent the corner points from being too densely clustered and to ensure they are evenly distributed across the images, I used the ANMS method mentioned in the paper. This involves increasing the radius for finding local maxima until an appropriate number of corner points is obtained. The results are as follows:</p>
+    <div class="image-container">
+        <img src="points.png" alt="ANMS Result Image 1" width="800">
+        <p>Figure 3: ANMS applied on Image 1.</p>
+    </div>
+
+    <h2>3. Descriptor Extraction</h2>
+    <p>I extracted descriptors for each corner point by sampling an 8×8 patch around them. Each corner point thus obtains its own descriptor. The results are as follows:(8 patches are randomly chosen</p>
+    <div class="image-container">
+        <img src="descriptors.jpg" alt="Descriptors Image 1" width="800">
+        <p>Figure 5: Sample descriptors from Image 1.</p>
+    </div>
+
+    <h2>4. Corner Point Matching</h2>
+    <p>Using the obtained descriptors, I matched corner points by finding the closest descriptor in the set of corner point patches from the other image. A match is considered successful only if the distance to the nearest neighbor is less than a certain threshold compared to the distance to the second-nearest neighbor (based on the ratio test). The matching results are as follows:</p>
+    <div class="image-container">
+        <img src="inliner0.jpg" alt="inliners  Results" width="800">
+        <p>Figure 7: Matched corner points between the two images.</p>
+    </div>
+
+    <h2>5. Applying RANSAC and Image Blending</h2>
+    <p>I applied the RANSAC algorithm to find the optimal transformation matrix, iterating 1,000 times. Then, I transformed one image and stitched it onto the other to find the correct alignment. For blending, I used Laplacian pyramid blending to merge the images layer by layer. The final result is as follows:</p>
+    <div class="image-container">
+        <img src="final_panorama.jpg" alt="Final Blended Panorama" width="800">
+        <p>Figure 8: The final stitched panoramic image.</p>
+    </div>
+
+    <h2>Additional Results</h2>
+    <p>Here are some additional results:</p>
+    <div class="image-container">
+        <img src="additional_result1.jpg" alt="Additional Result 1" width="800">
+        <p>Figure 9: Another example of panorama stitching.</p>
+    </div>
+    <div class="image-container">
+        <img src="additional_result2.jpg" alt="Additional Result 2" width="800">
+        <p>Figure 10: Further blending results.</p>
+    </div>
+
+</body>
+</html>
 
