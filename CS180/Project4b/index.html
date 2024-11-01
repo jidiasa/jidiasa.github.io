@@ -23,24 +23,6 @@
             margin: 0;
             font-size: 2.5em;
         }
-        nav {
-            background-color: #333;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        nav a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 12px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
         .container {
             width: 90%;
             max-width: 1000px;
@@ -49,62 +31,44 @@
         }
         h2 {
             color: #2F4F4F;
-            margin-top: 40px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
         }
         p {
             font-size: 1.1em;
         }
         .image-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         .image-container img {
-            width: 100%;
-            max-width: 800px;
+            max-width: 100%;
             height: auto;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
         }
         .image-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            margin: 30px 0;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         .image-row img {
-            margin: 10px;
-            width: 100%;
-            max-width: 480px;
-            height: auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            width: 48%;
         }
         .caption {
             font-style: italic;
-            margin-top: 10px;
             color: #555;
+            margin-top: 5px;
         }
         footer {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #333;
+            color: #f2f2f2;
             text-align: center;
             padding: 15px 0;
             margin-top: 40px;
-        }
-        @media (max-width: 800px) {
-            header h1 {
-                font-size: 2em;
-            }
-            nav a {
-                font-size: 15px;
-            }
-            .image-row {
-                flex-direction: column;
-                align-items: center;
-            }
-            .image-row img {
-                max-width: 90%;
-            }
         }
     </style>
 </head>
@@ -114,22 +78,11 @@
         <h1>Automatic Panorama Stitching Using Multi-Scale Oriented Patches</h1>
     </header>
 
-    <nav>
-        <div class="container">
-            <a href="#section1">Corner Detection</a>
-            <a href="#section2">ANMS</a>
-            <a href="#section3">Descriptor Extraction</a>
-            <a href="#section4">Feature Matching</a>
-            <a href="#section5">RANSAC & Blending</a>
-            <a href="#section6">Additional Results</a>
-        </div>
-    </nav>
-
     <div class="container">
 
         <p>In this project, I have automatically merged two photos into a panoramic image based on the paper <strong>"Multi-Image Matching using Multi-Scale Oriented Patches" by Brown et al.</strong></p>
 
-        <h2 id="section1">1. Corner Detection with Harris Function</h2>
+        <h2>1. Corner Detection with Harris Function</h2>
         <p>First, I applied the Harris function to extract corner points from both images. The results are as follows:</p>
         <div class="image-container">
             <img src="maximal_suppression_coord_result0.jpg" alt="Corner Detection Result Image 1">
@@ -140,49 +93,53 @@
             <p class="caption">Figure 2: Corner detection on Image 2.</p>
         </div>
 
-        <h2 id="section2">2. Adaptive Non-Maximal Suppression (ANMS)</h2>
+        <h2>2. Adaptive Non-Maximal Suppression (ANMS)</h2>
         <p>To prevent the corner points from being too densely clustered and to ensure they are evenly distributed across the images, I used the ANMS method mentioned in the paper. This involves increasing the radius for finding local maxima until an appropriate number of corner points is obtained. The results are as follows:</p>
         <div class="image-container">
             <img src="points.png" alt="ANMS Result Image 1">
-            <p class="caption">Figure 3: ANMS applied on the images.</p>
+            <p class="caption">Figure 3: ANMS applied on Image 1.</p>
         </div>
 
-        <h2 id="section3">3. Descriptor Extraction</h2>
+        <h2>3. Descriptor Extraction</h2>
         <p>I extracted descriptors for each corner point by sampling an 8×8 patch around them. Each corner point thus obtains its own descriptor. The results are as follows (8 patches are randomly chosen):</p>
         <div class="image-container">
             <img src="descriptors.jpg" alt="Descriptors Image 1">
-            <p class="caption">Figure 4: Sample descriptors from the images.</p>
+            <p class="caption">Figure 4: Sample descriptors from Image 1.</p>
         </div>
 
-        <h2 id="section4">4. Corner Point Matching</h2>
+        <h2>4. Corner Point Matching</h2>
         <p>Using the obtained descriptors, I matched corner points by finding the closest descriptor in the set of corner point patches from the other image. A match is considered successful only if the distance to the nearest neighbor is less than a certain threshold compared to the distance to the second-nearest neighbor (based on the ratio test). The matching results are as follows:</p>
         <div class="image-container">
             <img src="test.jpg" alt="Matching Results">
             <p class="caption">Figure 5: Matched corner points between the two images.</p>
         </div>
 
-        <h2 id="section5">5. Applying RANSAC and Image Blending</h2>
-        <p>I applied the RANSAC algorithm to find the optimal transformation matrix, iterating 1,000 times. Then, I transformed one image and stitched it onto the other to find the correct alignment. For blending, I used Laplacian pyramid blending to merge the images layer by layer. The results are as follows:</p>
-        <div class="image-row">
-            <img src="inliner0.jpg" alt="Inliers of Image 1">
-            <img src="inliner1.jpg" alt="Inliers of Image 2">
+        <h2>5. Applying RANSAC and Image Blending</h2>
+        <p>I applied the RANSAC algorithm to find the optimal transformation matrix, iterating 1,000 times. Then, I transformed one image and stitched it onto the other to find the correct alignment. For blending, I used Laplacian pyramid blending to merge the images layer by layer. The final result is as follows:</p>
+        <div class="image-container">
+            <div class="image-row">
+                <img src="inliner0.jpg" alt="Inliers of Image 1">
+                <img src="inliner1.jpg" alt="Inliers of Image 2">
+            </div>
+            <p class="caption">Figure 6: Inliers of RANSAC for both images.</p>
         </div>
-        <p class="caption">Figure 6: Inliers from RANSAC on both images.</p>
-
-        <div class="image-row">
-            <img src="blended_mosaic_12.png" alt="Final Blended Image (Manually Aligned)">
-            <img src="final_blend_image_1.jpg" alt="Final Blended Image (Auto-Aligned)">
+        <div class="image-container">
+            <div class="image-row">
+                <img src="blended_mosaic_12.png" alt="Final Blended Image (Manually aligned, Done by Project 4a)">
+                <img src="final_blend_image_1.jpg" alt="Final Blended Image (Auto-aligned)">
+            </div>
+            <p class="caption">Figure 7: Left - Manually aligned image (Project 4a). Right - Auto-aligned image.</p>
         </div>
-        <p class="caption">Figure 7: Comparison of manually aligned (left) and auto-aligned (right) panorama stitching.</p>
 
-        <h2 id="section6">6. Additional Results</h2>
+        <h2>Additional Results</h2>
         <p>Here are some additional results:</p>
-        <div class="image-row">
-            <img src="e12.jpg" alt="Additional Result 1 (Manually Aligned)">
-            <img src="final_blend_image_2.jpg" alt="Additional Result 1 (Auto-Aligned)">
+        <div class="image-container">
+            <div class="image-row">
+                <img src="e12.jpg" alt="Additional Result - Manually aligned">
+                <img src="final_blend_image_2.jpg" alt="Additional Result - Auto-aligned">
+            </div>
+            <p class="caption">Figure 8: Left - Manually aligned image (Project 4a). Right - Auto-aligned image.</p>
         </div>
-        <p class="caption">Figure 8: Additional comparison of manually aligned (left) and auto-aligned (right) results.</p>
-
         <div class="image-container">
             <img src="final_blend_image_3.jpg" alt="Additional Result 2">
             <p class="caption">Figure 9: Further blending results.</p>
