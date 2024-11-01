@@ -53,15 +53,20 @@
     <h2>4. Corner Point Matching</h2>
     <p>Using the obtained descriptors, I matched corner points by finding the closest descriptor in the set of corner point patches from the other image. A match is considered successful only if the distance to the nearest neighbor is less than a certain threshold compared to the distance to the second-nearest neighbor (based on the ratio test). The matching results are as follows:</p>
     <div class="image-container">
-        <img src="inliner0.jpg" alt="inliners  Results" width="800">
+        <img src="test.jpg" alt="Matching  Results" width="800">
         <p>Figure 7: Matched corner points between the two images.</p>
     </div>
 
     <h2>5. Applying RANSAC and Image Blending</h2>
     <p>I applied the RANSAC algorithm to find the optimal transformation matrix, iterating 1,000 times. Then, I transformed one image and stitched it onto the other to find the correct alignment. For blending, I used Laplacian pyramid blending to merge the images layer by layer. The final result is as follows:</p>
     <div class="image-container">
-        <img src="final_panorama.jpg" alt="Final Blended Panorama" width="800">
-        <p>Figure 8: The final stitched panoramic image.</p>
+        <img src="inliner0.jpg" alt="inliners of image 1" width="800">
+        <img src="inliner1.jpg" alt="inliners of image 2" width="800">
+        <p>Figure 8: inliners of RANSAC</p>
+    </div>
+     <div class="image-container">
+        <img src="final_blend_image.jpg" alt="final blend image" width="800">
+        <p>Figure 9: The final stitched panoramic image.</p>
     </div>
 
     <h2>Additional Results</h2>
