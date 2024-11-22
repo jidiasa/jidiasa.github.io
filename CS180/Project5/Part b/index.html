@@ -88,25 +88,26 @@
 <p>Following the method introduced in the paper, I implemented a single-step denoising UNet. I trained the UNet on the MNIST dataset. The training loss curve is shown below:</p>
 
 <!-- Insert image -->
-<img src="training_loss_curve.png" alt="Training Loss Curve">
+<img src="2.1.png" alt="Training Loss Curve">
 
 <p>The visualization of the different noising processes over α = 0.0, 0.2, 0.4, 0.6, 0.8, 1.0:</p>
 
 <!-- Insert image -->
-<img src="noising_process_visualization.png" alt="Noising Process Visualization">
+<img src="2.1.noi.png" alt="Noising Process Visualization">
 
 <p>Then I visualized denoised results on the test set at the end of training. Displaying sample results after the 1st and 5th epoch. The results are shown below:</p>
 
 <!-- Insert images -->
 <div class="image-row">
-    <img src="denoised_results_epoch1.png" alt="Denoised Results After 1st Epoch">
-    <img src="denoised_results_epoch5.png" alt="Denoised Results After 5th Epoch">
+    <img src="2.1.1.png" alt="Denoised Results After 1st Epoch">
+    <img src="2.1.5.png" alt="Denoised Results After 5th Epoch">
 </div>
+<img src="2.1.denoi.png" alt="Denoised Results">
 
 <p>Visualization of the denoiser results on test set digits with varying levels of noise over α = 0.0, 0.2, 0.4, 0.6, 0.8, 1.0. The result is shown below:</p>
 
 <!-- Insert image -->
-<img src="denoiser_results_varying_alpha.png" alt="Denoiser Results with Varying Alpha">
+<img src="2.1.alpha.png" alt="Denoiser Results with Varying Alpha">
 
 <h2>Part 2: Training a Diffusion Model</h2>
 
@@ -119,7 +120,7 @@
 <p>I trained the time-conditioned UNet on the MNIST dataset. The training loss curve is shown below:</p>
 
 <!-- Insert image -->
-<img src="time_conditioned_training_loss.png" alt="Time-Conditioned Training Loss Curve">
+<img src="2.2.png" alt="Time-Conditioned Training Loss Curve">
 
 <h3>2.3 Sampling from the Model</h3>
 
@@ -127,8 +128,8 @@
 
 <!-- Insert images -->
 <div class="image-row">
-    <img src="samples_after_epoch5.png" alt="Samples After 5 Epochs">
-    <img src="samples_after_epoch20.png" alt="Samples After 20 Epochs">
+    <img src="2.2.5.png" alt="Samples After 5 Epochs">
+    <img src="2.2.20.png" alt="Samples After 20 Epochs">
 </div>
 
 <h3>2.4 Class Conditioning</h3>
@@ -136,7 +137,7 @@
 <p>Class conditioning allows the UNet to generate images conditioned on a specific class (e.g., digits 0–9 for MNIST). This is achieved by injecting a one-hot encoded class vector into the network. The training loss curve is shown below:</p>
 
 <!-- Insert image -->
-<img src="class_conditioning_training_loss.png" alt="Class Conditioning Training Loss Curve">
+<img src="2.3.png" alt="Class Conditioning Training Loss Curve">
 
 <h3>2.5 Sampling from the Class-Conditioned Model</h3>
 
@@ -144,8 +145,8 @@
 
 <!-- Insert images -->
 <div class="image-row">
-    <img src="class_conditioned_samples_epoch5.png" alt="Class-Conditioned Samples After 5 Epochs">
-    <img src="class_conditioned_samples_epoch20.png" alt="Class-Conditioned Samples After 20 Epochs">
+    <img src="2.3.5.png" alt="Class-Conditioned Samples After 5 Epochs">
+    <img src="2.3.20.png" alt="Class-Conditioned Samples After 20 Epochs">
 </div>
 
 <footer>
