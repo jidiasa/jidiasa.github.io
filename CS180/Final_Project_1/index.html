@@ -21,12 +21,20 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .image-grid img {
+        .image-item {
+            flex: 1 1 calc(33.333% - 10px);
+            text-align: center;
+        }
+        .image-item img {
             max-width: 100%;
             height: auto;
-            flex: 1 1 calc(33.333% - 10px); /* Adjust the width percentage as needed */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
+        }
+        .image-item p {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
         }
         .parameters {
             font-style: italic;
@@ -41,10 +49,22 @@
         <h2>Part 1: Randomly Sampled Texture</h2>
         <p>First, I fill the output image with randomly sampled patches from the texture image. Here is the result.</p>
         <div class="image-grid">
-            <img src="bricks_small.jpg" alt="original texture 1">
-            <img src="texture.png" alt="original texture 2">
-            <img src="1.png" alt="Randomly Sampled Texture 1">
-            <img src="1.1.png" alt="Randomly Sampled Texture 2">
+            <div class="image-item">
+                <img src="bricks_small.jpg" alt="original texture 1">
+                <p>original texture 1</p>
+            </div>
+            <div class="image-item">
+                <img src="texture.png" alt="original texture 2">
+                <p>original texture 2</p>
+            </div>
+            <div class="image-item">
+                <img src="1.png" alt="Randomly Sampled Texture 1">
+                <p>Randomly Sampled Texture 1</p>
+            </div>
+            <div class="image-item">
+                <img src="1.1.png" alt="Randomly Sampled Texture 2">
+                <p>Randomly Sampled Texture 2</p>
+            </div>
         </div>
         <p class="parameters">The parameters: patch_size = 25, out_size = 200</p>
     </div>
@@ -53,8 +73,14 @@
         <h2>Part 2: Overlapping Patches</h2>
         <p>Then, to improve the quality of result, I search for the best patch with low overlapping errors with a tolerance of 5. The result is shown below:</p>
         <div class="image-grid">
-            <img src="2.png" alt="Overlapping Patches">
-            <img src="2.1.png" alt="Overlapping Patches">
+            <div class="image-item">
+                <img src="2.png" alt="Overlapping Patches">
+                <p>Overlapping Patches</p>
+            </div>
+            <div class="image-item">
+                <img src="2.1.png" alt="Overlapping Patches">
+                <p>Overlapping Patches</p>
+            </div>
         </div>
         <p class="parameters">The parameters: patch_size = 25, overlap = 7, tolerance = 5</p>
     </div>
@@ -63,18 +89,54 @@
         <h2>Part 3: Seam Finding</h2>
         <p>Then, I implemented a more complicated image quilting, which is cutting patches to better fit them. The result is shown below:</p>
         <div class="image-grid">
-            <img src="quilt.png" alt="Seam Finding Result 1">
-            <img src="3.1.png" alt="Seam Finding Result 2">
-            <img src="sample.png" alt="before Cut (template Patches)">
-            <img src="sample_.png" alt="after Cut (template Patches)">
-            <img src="target.png" alt="before Cut Patch">
-            <img src="target_.png" alt="after cut Patch">
-            <img src="errors.png" alt="SSD Errors">
-            <img src="top_mask.png" alt="Horizontal Mask">
-            <img src="left_mask.png" alt="Vertical Mask">
-            <img src="seam_mask.png" alt="Combination Mask">
-            <img src="ad1.png" alt="Additional Quilting Result 1">
-            <img src="ad2.png" alt="Additional Quilting Result 2">
+            <div class="image-item">
+                <img src="quilt.png" alt="Seam Finding Result 1">
+                <p>Seam Finding Result 1</p>
+            </div>
+            <div class="image-item">
+                <img src="3.1.png" alt="Seam Finding Result 2">
+                <p>Seam Finding Result 2</p>
+            </div>
+            <div class="image-item">
+                <img src="sample.png" alt="before Cut (template Patches)">
+                <p>before Cut (template Patches)</p>
+            </div>
+            <div class="image-item">
+                <img src="sample_.png" alt="after Cut (template Patches)">
+                <p>after Cut (template Patches)</p>
+            </div>
+            <div class="image-item">
+                <img src="target.png" alt="before Cut Patch">
+                <p>before Cut Patch</p>
+            </div>
+            <div class="image-item">
+                <img src="target_.png" alt="after cut Patch">
+                <p>after cut Patch</p>
+            </div>
+            <div class="image-item">
+                <img src="errors.png" alt="SSD Errors">
+                <p>SSD Errors</p>
+            </div>
+            <div class="image-item">
+                <img src="top_mask.png" alt="Horizontal Mask">
+                <p>Horizontal Mask</p>
+            </div>
+            <div class="image-item">
+                <img src="left_mask.png" alt="Vertical Mask">
+                <p>Vertical Mask</p>
+            </div>
+            <div class="image-item">
+                <img src="seam_mask.png" alt="Combination Mask">
+                <p>Combination Mask</p>
+            </div>
+            <div class="image-item">
+                <img src="ad1.png" alt="Additional Quilting Result 1">
+                <p>Additional Quilting Result 1</p>
+            </div>
+            <div class="image-item">
+                <img src="ad2.png" alt="Additional Quilting Result 2">
+                <p>Additional Quilting Result 2</p>
+            </div>
         </div>
     </div>
 
@@ -94,8 +156,14 @@
         </p>
         <p>The result is shown below:</p>
         <div class="image-grid">
-            <img src="transfer1.png" alt="Texture Transfer Result 1">
-            <img src="transfer2.png" alt="Texture Transfer Result 2">
+            <div class="image-item">
+                <img src="transfer1.png" alt="Texture Transfer Result 1">
+                <p>Texture Transfer Result 1</p>
+            </div>
+            <div class="image-item">
+                <img src="transfer2.png" alt="Texture Transfer Result 2">
+                <p>Texture Transfer Result 2</p>
+            </div>
         </div>
     </div>
 
