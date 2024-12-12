@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project 1 - Image Quilting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        img {
+            display: block;
+            margin: 10px 0;
+            max-width: 100%;
+            height: auto;
+        }
+        .parameters {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Final Project 1 – Image Quilting</h1>
+
+    <div class="section">
+        <h2>Part 1: Randomly Sampled Texture</h2>
+        <p>First, I fill the output image with randomly sampled patches from the texture image. Here is the result.</p>
+        <img src="[insert image]" alt="Randomly Sampled Texture">
+        <p class="parameters">The parameters: patch_size = 25, out_size = 200</p>
+    </div>
+
+    <div class="section">
+        <h2>Part 2: Overlapping Patches</h2>
+        <p>Then, to improve the quality of result, I search for the best patch with low overlapping errors with a tolerance of 5. The result is shown below:</p>
+        <img src="[insert image]" alt="Overlapping Patches">
+        <p class="parameters">The parameters: patch_size = 25, overlap = 7, tolerance = 5</p>
+    </div>
+
+    <div class="section">
+        <h2>Part 3: Seam Finding</h2>
+        <p>Then, I implemented a more complicated image quilting, which is cutting patches to better fit them. The result is shown below:</p>
+        <img src="[insert image]" alt="Seam Finding Result">
+        <p>Here are two patches that are being cut, one from the template, the other from the selected:</p>
+        <img src="[insert image]" alt="Cut Patches">
+        <p>To get the binary mask, SSD errors are calculated, shown below:</p>
+        <img src="[insert image]" alt="SSD Errors">
+        <p>And there are three masks, horizontal mask, vertical mask, and combination mask:</p>
+        <img src="[insert image]" alt="Horizontal Mask">
+        <img src="[insert image]" alt="Vertical Mask">
+        <img src="[insert image]" alt="Combination Mask">
+        <p>Additional quilting results are shown below:</p>
+        <img src="[insert image]" alt="Additional Quilting Result 1">
+        <img src="[insert image]" alt="Additional Quilting Result 2">
+        <img src="[insert image]" alt="Additional Quilting Result 3">
+        <img src="[insert image]" alt="Additional Quilting Result 4">
+        <img src="[insert image]" alt="Additional Quilting Result 5">
+        <img src="[insert image]" alt="Additional Quilting Result 6">
+    </div>
+
+    <div class="section">
+        <h2>Part 4: Texture Transfer</h2>
+        <p>
+            Texture transfer is a computer graphics technique that combines the texture of one image (source) with the structure or layout of another (target). The goal is to synthesize a new image that maintains the visual characteristics of the source texture while conforming to the design or features of the target. This is achieved by balancing two constraints: preserving texture authenticity and respecting the target's structural details.
+        </p>
+        <p>
+            The process involves dividing the source texture into small, overlapping patches and arranging them to construct the output image. Patch-based synthesis ensures texture consistency and minimizes artifacts. Overlapping regions between patches are blended using techniques like minimal error boundary cuts, resulting in smooth transitions and a seamless appearance.
+        </p>
+        <p>
+            To guide patch selection, an error metric evaluates both texture and guidance alignment. The texture matching error ensures patches resemble the source texture, while the guidance matching error aligns patches with the target structure. A weighting factor (alpha) adjusts the influence of each constraint.
+        </p>
+        <p>
+            Applications of texture transfer include artistic rendering, style transfer, and gaming. It enables realistic textures to be applied to sketches, stylized designs, or virtual environments. By blending textures and structures, texture transfer is a versatile tool for creating visually striking and contextually relevant images.
+        </p>
+        <p>The result is shown below:</p>
+        <img src="[insert image]" alt="Texture Transfer Result 1">
+        <img src="[insert image]" alt="Texture Transfer Result 2">
+        <img src="[insert image]" alt="Texture Transfer Result 3">
+    </div>
+
+</body>
+</html>
 
