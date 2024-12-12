@@ -16,11 +16,17 @@
         .section {
             margin-bottom: 40px;
         }
-        img {
-            display: block;
-            margin: 10px 0;
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .image-grid img {
             max-width: 100%;
             height: auto;
+            flex: 1 1 calc(33.333% - 10px); /* Adjust the width percentage as needed */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
         }
         .parameters {
             font-style: italic;
@@ -34,40 +40,42 @@
     <div class="section">
         <h2>Part 1: Randomly Sampled Texture</h2>
         <p>First, I fill the output image with randomly sampled patches from the texture image. Here is the result.</p>
-        <img src="bricks_small.jpg" alt="oringinal texture 1">
-        <img src="texture.png" alt="oringinal texture 2">
-        <img src="1.png" alt="Randomly Sampled Texture 1">
-        <img src="1.1.png" alt="Randomly Sampled Texture 2">
+        <div class="image-grid">
+            <img src="bricks_small.jpg" alt="original texture 1">
+            <img src="texture.png" alt="original texture 2">
+            <img src="1.png" alt="Randomly Sampled Texture 1">
+            <img src="1.1.png" alt="Randomly Sampled Texture 2">
+        </div>
         <p class="parameters">The parameters: patch_size = 25, out_size = 200</p>
     </div>
 
     <div class="section">
         <h2>Part 2: Overlapping Patches</h2>
         <p>Then, to improve the quality of result, I search for the best patch with low overlapping errors with a tolerance of 5. The result is shown below:</p>
-        <img src="2.png" alt="Overlapping Patches">
-        <img src="2.1.png" alt="Overlapping Patches">
+        <div class="image-grid">
+            <img src="2.png" alt="Overlapping Patches">
+            <img src="2.1.png" alt="Overlapping Patches">
+        </div>
         <p class="parameters">The parameters: patch_size = 25, overlap = 7, tolerance = 5</p>
     </div>
 
     <div class="section">
         <h2>Part 3: Seam Finding</h2>
         <p>Then, I implemented a more complicated image quilting, which is cutting patches to better fit them. The result is shown below:</p>
-        <img src="quilt.png" alt="Seam Finding Result 1">
-        <img src="3.1.png" alt="Seam Finding Result 2">
-        <p>Here are two patches that are being cut, one from the template 1, the other from the selected:</p>
-        <img src="sample.png" alt="before Cut (template Patches)">
-        <img src="sample_.png" alt="after Cut (template Patches)">
-        <img src="target.png" alt="before Cut Patch">
-        <img src="target_.png" alt="after cut Patch">
-        <p>To get the binary mask, SSD errors are calculated, shown below:</p>
-        <img src="errors.png" alt="SSD Errors">
-        <p>And there are three masks, horizontal mask, vertical mask, and combination mask (yellow repesents 1 and purple repesents 0):</p>
-        <img src="top_mask.png" alt="Horizontal Mask">
-        <img src="left_mask.png" alt="Vertical Mask">
-        <img src="seam_mask.png" alt="Combination Mask">
-        <p>Additional quilting results are shown below:</p>
-        <img src="ad1.png" alt="Additional Quilting Result 1">
-        <img src="ad2.png" alt="Additional Quilting Result 2">
+        <div class="image-grid">
+            <img src="quilt.png" alt="Seam Finding Result 1">
+            <img src="3.1.png" alt="Seam Finding Result 2">
+            <img src="sample.png" alt="before Cut (template Patches)">
+            <img src="sample_.png" alt="after Cut (template Patches)">
+            <img src="target.png" alt="before Cut Patch">
+            <img src="target_.png" alt="after cut Patch">
+            <img src="errors.png" alt="SSD Errors">
+            <img src="top_mask.png" alt="Horizontal Mask">
+            <img src="left_mask.png" alt="Vertical Mask">
+            <img src="seam_mask.png" alt="Combination Mask">
+            <img src="ad1.png" alt="Additional Quilting Result 1">
+            <img src="ad2.png" alt="Additional Quilting Result 2">
+        </div>
     </div>
 
     <div class="section">
@@ -85,10 +93,11 @@
             Applications of texture transfer include artistic rendering, style transfer, and gaming. It enables realistic textures to be applied to sketches, stylized designs, or virtual environments. By blending textures and structures, texture transfer is a versatile tool for creating visually striking and contextually relevant images.
         </p>
         <p>The result is shown below:</p>
-        <img src="transfer1.png" alt="Texture Transfer Result 1">
-        <img src="transfer2.png" alt="Texture Transfer Result 2">
+        <div class="image-grid">
+            <img src="transfer1.png" alt="Texture Transfer Result 1">
+            <img src="transfer2.png" alt="Texture Transfer Result 2">
+        </div>
     </div>
 
 </body>
 </html>
-
