@@ -34,29 +34,37 @@
     <div class="section">
         <h2>Part 1: Randomly Sampled Texture</h2>
         <p>First, I fill the output image with randomly sampled patches from the texture image. Here is the result.</p>
-        <img src="[insert image]" alt="Randomly Sampled Texture">
+        <img src="t1.png" alt="oringinal texture 1">
+        <img src="t2.png" alt="oringinal texture 2">
+        <img src="1.png" alt="Randomly Sampled Texture 1">
+        <img src="1.1.png" alt="Randomly Sampled Texture 2">
         <p class="parameters">The parameters: patch_size = 25, out_size = 200</p>
     </div>
 
     <div class="section">
         <h2>Part 2: Overlapping Patches</h2>
         <p>Then, to improve the quality of result, I search for the best patch with low overlapping errors with a tolerance of 5. The result is shown below:</p>
-        <img src="[insert image]" alt="Overlapping Patches">
+        <img src="2.png" alt="Overlapping Patches">
+        <img src="2.1.png" alt="Overlapping Patches">
         <p class="parameters">The parameters: patch_size = 25, overlap = 7, tolerance = 5</p>
     </div>
 
     <div class="section">
         <h2>Part 3: Seam Finding</h2>
         <p>Then, I implemented a more complicated image quilting, which is cutting patches to better fit them. The result is shown below:</p>
-        <img src="[insert image]" alt="Seam Finding Result">
-        <p>Here are two patches that are being cut, one from the template, the other from the selected:</p>
-        <img src="[insert image]" alt="Cut Patches">
+        <img src="quilt.png" alt="Seam Finding Result 1">
+        <img src="3.1.png" alt="Seam Finding Result 2">
+        <p>Here are two patches that are being cut, one from the template 1, the other from the selected:</p>
+        <img src="sample.png" alt="before Cut (template Patches)">
+        <img src="sample_.png" alt="after Cut (template Patches)">
+        <img src="target.png" alt="before Cut Patch">
+        <img src="target_.png" alt="after cut Patch">
         <p>To get the binary mask, SSD errors are calculated, shown below:</p>
-        <img src="[insert image]" alt="SSD Errors">
-        <p>And there are three masks, horizontal mask, vertical mask, and combination mask:</p>
-        <img src="[insert image]" alt="Horizontal Mask">
-        <img src="[insert image]" alt="Vertical Mask">
-        <img src="[insert image]" alt="Combination Mask">
+        <img src="errors.png" alt="SSD Errors">
+        <p>And there are three masks, horizontal mask, vertical mask, and combination mask (yellow repesents 1 and purple repesents 0):</p>
+        <img src="top_mask.png" alt="Horizontal Mask">
+        <img src="left_mask.png" alt="Vertical Mask">
+        <img src="seam_mask.png" alt="Combination Mask">
         <p>Additional quilting results are shown below:</p>
         <img src="[insert image]" alt="Additional Quilting Result 1">
         <img src="[insert image]" alt="Additional Quilting Result 2">
