@@ -7,101 +7,12 @@
 </head>
 <body>
     <h1>Gradient Domain Processing Example</h1>
-    <canvas id="sourceCanvas" width="256" height="256" style="border:1px solid black;"></canvas>
-    <canvas id="outputCanvas" width="256" height="256" style="border:1px solid black;"></canvas>
-
-    <script>
-        // Initialize canvases
-        const sourceCanvas = document.getElementById('sourceCanvas');
-        const outputCanvas = document.getElementById('outputCanvas');
-        const sourceCtx = sourceCanvas.getContext('2d');
-        const outputCtx = outputCanvas.getContext('2d');
-
-        // Create a simple gradient source image
-        const width = sourceCanvas.width;
-        const height = sourceCanvas.height;
-        const sourceImage = sourceCtx.createImageData(width, height);
-
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                const index = (y * width + x) * 4;
-                const intensity = Math.round((x + y) / (width + height) * 255);
-                sourceImage.data[index] = intensity; // Red
-                sourceImage.data[index + 1] = intensity; // Green
-                sourceImage.data[index + 2] = intensity; // Blue
-                sourceImage.data[index + 3] = 255; // Alpha
-            }
-        }
-
-        sourceCtx.putImageData(sourceImage, 0, 0);
-
-        // Gradient domain processing
-        function gradientDomainProcessing(source) {
-            const output = new Float32Array(width * height);
-
-            // Calculate gradients and solve the constraints
-            const gradientsX = new Float32Array(width * height);
-            const gradientsY = new Float32Array(width * height);
-
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    const index = y * width + x;
-                    const intensity = source[index];
-
-                    if (x < width - 1) {
-                        gradientsX[index] = source[index + 1] - intensity;
-                    }
-                    if (y < height - 1) {
-                        gradientsY[index] = source[index + width] - intensity;
-                    }
-                }
-            }
-
-            // Reconstruction using constraints
-            output[0] = source[0]; // Top-left pixel constraint
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    const index = y * width + x;
-
-                    if (x > 0) {
-                        output[index] = output[index - 1] + gradientsX[index - 1];
-                    }
-                    if (y > 0) {
-                        output[index] += output[index - width] + gradientsY[index - width];
-                    }
-                    output[index] /= 2;
-                }
-            }
-
-            return output;
-        }
-
-        // Extract grayscale values from source image
-        const sourceData = new Float32Array(width * height);
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                const index = (y * width + x) * 4;
-                sourceData[y * width + x] = sourceImage.data[index];
-            }
-        }
-
-        const result = gradientDomainProcessing(sourceData);
-
-        // Create output image
-        const outputImage = outputCtx.createImageData(width, height);
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                const index = (y * width + x) * 4;
-                const intensity = Math.min(255, Math.max(0, result[y * width + x]));
-                outputImage.data[index] = intensity; // Red
-                outputImage.data[index + 1] = intensity; // Green
-                outputImage.data[index + 2] = intensity; // Blue
-                outputImage.data[index + 3] = 255; // Alpha
-            }
-        }
-
-        outputCtx.putImageData(outputImage, 0, 0);
-    </script>
+    <p>This example demonstrates gradient domain processing, where an image is reconstructed using its gradients. The process involves:
+        <ul>
+            <li>Computing the x and y gradients from the source image.</li>
+            <li>Using these gradients, along with a fixed pixel intensity constraint, to solve for the output image.</li>
+            <li>Reconstructing the image by solving a least squares optimization problem.</li>
+        </ul>
+    </p>
 </body>
 </html>
-
